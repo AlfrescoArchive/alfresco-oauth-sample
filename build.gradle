@@ -1,0 +1,36 @@
+apply plugin: 'war'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'jetty'
+
+sourceCompatibility = 1.6
+version = '1.0'
+group = 'org.alfresco'
+
+description = """\
+A sample Server Side OAuth application
+------------------------------------------
+Project version: ${version}
+Gradle version: ${gradle.gradleVersion}
+------------------------------------------
+"""
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Alfresco OAuth Sample', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.10'
+}
+
+defaultTasks 'tasks'
+
+task wrap(type : Wrapper, description : "create a gradlew") {
+    gradleVersion = '1.1'	
+}
