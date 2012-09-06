@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>OAuth Callback page</title>
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 </head>
 <body>
@@ -16,7 +18,7 @@ This page is the callback URL you entered when you registered your application i
 The authorization code that has been returned is: <div id="authCodeText" style="color:blue;"></div>
 </section>
 <section>
-<form id="tokenForm" action="https://stagapi.alfresco.com/auth/oauth/versions/2/token" method="post" target="ipostresponse">
+<form id="tokenForm" action="https://stagapi.alfresco.com/auth/oauth/versions/2/token" method="post">
 <h3 id="exchangeHeader">2) Exchange the authorization code for an Access token </h3>
 URL: https://stagapi.alfresco.com/auth/oauth/versions/2/token<br/>
 code: <input id="authCode" name="code" value="" size="50px"><br/>
@@ -28,12 +30,8 @@ grant_type: <input name="grant_type" value="authorization_code" readonly="readon
 </form><br/>
 </section>
 <section id="authNotes">
-You have 10 minutes to exchange an Authorization Code for an Access token and this can only be done once.
-</section>
-<section id="responseDetails" style="display: none;">
-This is the response from the POST:<br/>
-<iframe id="ipostresponse" name="ipostresponse" width="400px" height="150px">Your browser must support iframes</iframe><br/>
-Now copy the access token and <a href="withAccessToken.html">Call a url with access token</a>
+You have 10 minutes to exchange an Authorization Code for an Access token and this can only be done once.<br/> 
+Once you have an access token, you can <a href="withAccessToken.html">call a url using the token</a>
 </section>
 <script>
       // Read a page's GET URL variables and return them as an associative array.
@@ -62,13 +60,13 @@ Now copy the access token and <a href="withAccessToken.html">Call a url with acc
          
           //When the form is submittted
           $('#tokenForm').submit(function() {
-            $('#authSec').hide();
-            $('#authNotes').hide();
+           // $('#authSec').hide();
+           // $('#authNotes').hide();
             $('#exchangeHeader').css("color","blue");
-            $('#responseDetails').show();
           });       
 
        });
 </script>
+<section style="margin-top: 100px;font-size: 12px;">Other links:<a href="/alfoauthsample/">Start again</a> <a href="withAccessToken.html">Use Access Token</a> <a href="refreshAccessToken.html">Refresh Access Token</a></section>
 </body>
 </html>
