@@ -18,17 +18,22 @@ You have 1 hour to use the access token.  After that you need to <a href="refres
 <h4>Name: Authorization<br/>Value: Bearer [your access code]<br/>eg. Bearer d1358c05-6564-4086-94b6-a7e14ce3490</h4>
 
 <h3>3) Call a URL using the access token </h3>
-<form id="callerForm" action="" method="get">
+<form id="callerForm" action="" method="get" target="ipostresponse">
 Paste your Access token here: <input name="access_token" value="" size="60px"><br/>
 API url to call (via HTTP.GET) <input id="urlToCall" value="https://stagapi.alfresco.com/alfresco.com/public/alfresco/versions/1/sites" size="70px"><br/>
 <input type="submit">
 </form>
+</section>
+<section id="responseDetails" style="display: none;">
+This is the response from the POST:<br/>
+<iframe id="ipostresponse" name="ipostresponse" width="400px" height="150px">Your browser must support iframes</iframe><br/>
 </section>
 <script>     
    $(document).ready(function()   {         
        //When the form is submittted
        $('#callerForm').submit(function() {
          $('#callerForm').attr('action', $('#urlToCall').val()) ;
+         $('#responseDetails').show();
        });       
 
     });
