@@ -15,7 +15,7 @@
 <h1>OAuth Sample - Refresh the access token</h1>
 <section id="accessToken">
 URL: https://stagapi.alfresco.com/auth/oauth/versions/2/token<br/>
-<form id="tokenForm" action="https://stagapi.alfresco.com/auth/oauth/versions/2/token" method="post">
+<form id="tokenForm" action="https://stagapi.alfresco.com/auth/oauth/versions/2/token" method="post" target="ipostresponse">
 Paste your refresh token here: refresh_token: <input name="refresh_token" value="" size="60px"><br/>
 client_id: <input name="client_id" value="ead0f70b-f246-4a82-9ac3-070d07ff90ee" size="50px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
 client_secret: <input name="client_secret" value="32d34ecf-357a-4f53-8fcf-c5602cda4a2e" size="50px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
@@ -28,6 +28,10 @@ grant_type: <input name="grant_type" value="refresh_token" readonly="readonly"><
 <section id="authNotes">
 The refresh token is valid for 7 days, however a new refresh token is issued when the access token is refreshed.
 </section>
+<section id="responseDetails" style="display: none;">
+This is the response from the POST:<br/>
+<iframe id="ipostresponse" name="ipostresponse" width="400px" height="150px">Your browser must support iframes</iframe><br/>
+</section>
 <script>
       
       $(document).ready(function()   {       
@@ -35,6 +39,7 @@ The refresh token is valid for 7 days, however a new refresh token is issued whe
            $('#tokenForm').submit(function() {
              $('#authNotes').hide();
              $('#exchangeHeader').css("color","blue");
+             $('#responseDetails').show();
            });
        });
 </script>
