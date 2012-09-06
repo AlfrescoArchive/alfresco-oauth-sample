@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Alfresco OAuth Sample Demo</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+</head>
+<body>
+<a href="/alfoauthsample/">
+<img src="http://www.alfresco.com/sites/www/themes/alfrescodotcom/img/logo.svg" alt="Alfresco" width="241px">
+</a>
+<h1>OAuth Sample - Use the access token</h1>
+<section id="accessToken">
+You have 1 hour to use the access token.  After that you need to <a href="refreshAccessToken.html">refresh it</a>.
+<h3>The preferred way to pass the access token is by setting a HTTP header: </h3>
+<h4>Name: Authorization<br/>Value: Bearer [your access code]<br/>eg. Bearer d1358c05-6564-4086-94b6-a7e14ce3490</h4>
+
+<h3>3) Call a URL using the access token </h3>
+<form id="callerForm" action="" method="get">
+Paste your Access token here: <input name="access_token" value="" size="60px"><br/>
+API url to call (via HTTP.GET) <input id="urlToCall" value="https://stagapi.alfresco.com/alfresco/a/alfresco.com/public/alfresco/versions/1/sites" size="70px"><br/>
+<input type="submit">
+</form>
+</section>
+<script>     
+   $(document).ready(function()   {         
+       //When the form is submittted
+       $('#callerForm').submit(function() {
+         $('#callerForm').attr('action', $('#urlToCall').val()) ;
+       });       
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Alfresco OAuth Sample Demo</title>
+</head>
+<body>
+<a href="/alfoauthsample/">
+<img src="http://www.alfresco.com/sites/www/themes/alfrescodotcom/img/logo.svg" alt="Alfresco" width="241px">
+</a>
+<h1>Welcome to the Alfresco OAuth Sample App</h1>
+<section>
+You will need a valid username and password for <a href="https://my.alfresco.com">my.alfresco.com</a>, please enter these user credentials when prompted during the OAuth flow.
+</section>
+<section>
+<h3>1) First we need to request an Authorization code: </h3>
+URL: https://stagapi.alfresco.com/auth/oauth/versions/2/authorize<br/>
+<form action="https://stagapi.alfresco.com/auth/oauth/versions/2/authorize">
+client_id: <input name="client_id" value="ead0f70b-f246-4a82-9ac3-070d07ff90ee" size="50px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
+redirect_uri: <input name="redirect_uri" value="http://localhost:8080/alfoauthsample/mycallback.html" size="70px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
+scope: <input name="scope" value="pub_api"><br/>
+response_type: <input name="response_type" value="code" readonly="readonly"><br/>
+<input type="submit">
+</form>
+</section>
+<section style="margin-top: 100px;font-size: 12px;">Other links:<a href="withAccessToken.html">Use Access Token</a> <a href="refreshAccessToken.html">Refresh Access Token</a></section>
+</body>
+</html>

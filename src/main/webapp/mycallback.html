@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>OAuth Callback page</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+</head>
+<body>
+<a href="/alfoauthsample/">
+<img src="http://www.alfresco.com/sites/www/themes/alfrescodotcom/img/logo.svg" alt="Alfresco" width="241px">
+</a>
+<h1>OAuth Sample - Callback page</h1>
+<section id="authSec">
+This page is the callback URL you entered when you registered your application in the developer portal.
+<h3>The Authorization Code has been added to the URL as a "code" param</h3>
+The authorization code that has been returned is: <div id="authCodeText" style="color:blue;"></div>
+</section>
+<section>
+<form id="tokenForm" action="https://stagapi.alfresco.com/auth/oauth/versions/2/token" method="post" target="ipostresponse">
+<h3 id="exchangeHeader">2) Exchange the authorization code for an Access token </h3>
+URL: https://stagapi.alfresco.com/auth/oauth/versions/2/token<br/>
+code: <input id="authCode" name="code" value="" size="50px"><br/>
+client_id: <input name="client_id" value="ead0f70b-f246-4a82-9ac3-070d07ff90ee" size="50px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
+client_secret: <input name="client_secret" value="32d34ecf-357a-4f53-8fcf-c5602cda4a2e" size="50px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
+redirect_uri: <input name="redirect_uri" value="http://localhost:8080/alfoauthsample/mycallback.html" size="70px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
+grant_type: <input name="grant_type" value="authorization_code" readonly="readonly"><br/>
+<input type="submit">
+</form><br/>
+</section>
+<section id="authNotes">
+You have 10 minutes to exchange an Authorization Code for an Access token and this can only be done once.
+</section>
+<section id="responseDetails" style="display: none;">
+This is the response from the POST:<br/>
+<iframe id="ipostresponse" name="ipostresponse" width="400px" height="150px">Your browser must support iframes</iframe><br/>
+Now copy the access token and <a href="withAccessToken.html">Call a url with access token</a>
+</section>
+<script>
+      // Read a page's GET URL variables and return them as an associative array.
+      function getUrlVars()
+      {
+          var vars = [], hash;
+          var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+          for(var i = 0; i < hashes.length; i++)
+          {
+              hash = hashes[i].split('=');
+              vars.push(hash[0]);
+              vars[hash[0]] = hash[1];
+          }
+
+          return vars;
+      }
+      
+      $(document).ready(function()   {
+         var authCode = getUrlVars()["code"];
+         if (authCode == null) {
+            alert("Callback page called incorrectly, no code param has been found.");
+         }
+         $('#authCode').val(authCode);
+         $('#authCodeText').text(authCode);  
+         
+          //When the form is submittted
+          $('#tokenForm').submit(function() {
+            $('#authSec').hide();
+            $('#authNotes').hide();
+            $('#exchangeHeader').css("color","blue");
+            $('#responseDetails').show();
+          });       
+
+       });
+</script>
+</body>
+</html>
