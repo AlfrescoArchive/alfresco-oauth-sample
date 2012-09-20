@@ -9,6 +9,7 @@ group = 'org.alfresco'
 
 jettyRun {
     contextPath = 'alfoauthsample'
+    httpPort = 8181
 }
 
 description = """\
