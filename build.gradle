@@ -8,7 +8,7 @@ version = '1.0'
 group = 'org.alfresco'
 
 jettyRun {
-    contextPath = 'alfoauthsample'
+    contextPath = 'oauthsample'
     httpPort = 8181
 }
 
