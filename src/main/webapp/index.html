@@ -5,6 +5,8 @@
 <title>Alfresco OAuth Sample Demo</title>
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="config.js"></script>
 </head>
 <body>
 <a href="/alfoauthsample/">
@@ -17,15 +19,24 @@ You will need a valid username and password for <a href="https://stagmy.alfresco
 <section>
 <h3>1) First we need to request an Authorization code: </h3>
 Press the submit button then follow the flow:<br/><br/>
-URL: https://stagapi.alfresco.com/auth/oauth/versions/2/authorize<br/>
-<form action="https://stagapi.alfresco.com/auth/oauth/versions/2/authorize">
-client_id: <input name="client_id" value="ead0f70b-f246-4a82-9ac3-070d07ff90ee" size="50px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
-redirect_uri: <input name="redirect_uri" value="http://localhost:8080/alfoauthsample/mycallback.html" size="70px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
-scope: <input name="scope" value="pub_api"><br/>
+URL: <span id="urlShown" ></span><br/>
+<form id="callerForm" action="">
+client_id: <input name="client_id" value="" size="50px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
+redirect_uri: <input name="redirect_uri" value="" size="70px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
+scope: <input name="scope" value=""><br/>
 response_type: <input name="response_type" value="code" readonly="readonly"><br/>
 <input type="submit">
 </form>
 </section>
+<script>    
+      $(document).ready(function()   {
+         $("input[name=client_id]").val(config.client_id);
+         $("input[name=redirect_uri]").val(config.redirect_uri);
+         $("input[name=scope]").val(config.scope);
+         $('#urlShown').html(config.authURL) ;
+         $('#callerForm').attr('action', config.authURL) ;
+       });
+</script>
 <section style="margin-top: 100px;font-size: 12px;">Other links:<a href="withAccessToken.html">Use Access Token</a> <a href="refreshAccessToken.html">Refresh Access Token</a></section>
 </body>
 </html>

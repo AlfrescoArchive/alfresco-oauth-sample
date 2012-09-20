@@ -6,6 +6,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="config.js"></script>
 </head>
 <body>
 <a href="/alfoauthsample/">
@@ -18,12 +19,12 @@ This page is the callback URL you entered when you registered your application i
 The authorization code that has been returned is: <div id="authCodeText" style="color:blue;"></div>
 </section>
 <section>
-<form id="tokenForm" action="https://stagapi.alfresco.com/auth/oauth/versions/2/token" method="post" target="ipostresponse">
+<form id="tokenForm" action="" method="post" target="ipostresponse">
 <h3 id="exchangeHeader">2) Exchange the authorization code for an Access token </h3>
-URL: https://stagapi.alfresco.com/auth/oauth/versions/2/token<br/>
+URL: <span id="urlShown" ></span><br/>
 code: <input id="authCode" name="code" value="" size="50px"><br/>
-client_id: <input name="client_id" value="ead0f70b-f246-4a82-9ac3-070d07ff90ee" size="50px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
-client_secret: <input name="client_secret" value="32d34ecf-357a-4f53-8fcf-c5602cda4a2e" size="50px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
+client_id: <input name="client_id" value="" size="50px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
+client_secret: <input name="client_secret" value="" size="50px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
 redirect_uri: <input name="redirect_uri" value="http://localhost:8080/alfoauthsample/mycallback.html" size="70px"><font size="-1"> * This must match the registered value in the developer portal</font><br/>
 grant_type: <input name="grant_type" value="authorization_code" readonly="readonly"><br/>
 <input type="submit">
@@ -61,6 +62,12 @@ Now copy the access token and <a href="withAccessToken.html">Call a url with acc
          }
          $('#authCode').val(authCode);
          $('#authCodeText').text(authCode);  
+         
+         $("input[name=client_id]").val(config.client_id);
+         $("input[name=client_secret]").val(config.client_secret);
+         $("input[name=redirect_uri]").val(config.redirect_uri);
+         $('#urlShown').html(config.tokenURL) ;
+         $('#tokenForm').attr('action', config.tokenURL) ;
          
           //When the form is submittted
           $('#tokenForm').submit(function() {
