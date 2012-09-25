@@ -2,7 +2,8 @@ var config = {
   client_id:"your_id",
   client_secret:"your_secret",
   redirect_uri:"your_callback_url",
-  authURL:"https://stagapi.alfresco.com/auth/oauth/versions/2/authorize",
-  tokenURL:"https://stagapi.alfresco.com/auth/oauth/versions/2/token",
-  scope:"public_api"
+  authURL:"https://api.alfresco.com/auth/oauth/versions/2/authorize",
+  tokenURL:"https://api.alfresco.com/auth/oauth/versions/2/token",
+  scope:"public_api",
+  aTestUrl:"https://api.alfresco.com/alfresco.com/public/alfresco/versions/1/sites"
 };
