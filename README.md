@@ -1,4 +1,4 @@
-This is a Sample Alfresco OAuth Application demonstrating the server-side web application flow
+This is a Sample [Alfresco](http://www.alfresco.com/) OAuth Application demonstrating the server-side web application flow
 
 Getting started
 ===============
@@ -6,11 +6,11 @@ Getting started
 Follow these instructions:
 
 * Ensure you have an up to date Java VM installed and port 8181 is not in use
-* Checkout the project
-* Edit src/main/webapp/config.js and put in the client_id, client_secret and callback urls you used when you registered at developer.alfresco.com (For this app, the redirect_uri should be http://localhost:8181/oauthsample/mycallback.html)
+* Edit src/main/webapp/config.js and put in the client_id, client_secret and callback urls you used when you registered at [The Alfresco Developer Portal](https://developer.alfresco.com/) (For this app, the redirect_uri should be http://localhost:8181/oauthsample/mycallback.html)
 * type: gradlew jettyRun
 * In a web browser go to http://localhost:8181/oauthsample
 
+*Note: You don't need to install any other software (only a Java VM and web browser is required).*
 
 # License
 Copyright (C) 2012 Alfresco Software Limited
